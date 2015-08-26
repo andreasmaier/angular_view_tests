@@ -1,4 +1,3 @@
 {
-  "directory": "public/bower_components",
-  "proxy": "http://localhost:8118"
+  "directory": "public/bower_components"
 }

@@ -1,0 +1,20 @@
+{
+  "name": "view_tests",
+  "version": "0.0.0",
+  "authors": [
+    "Andreas Maier <andreas.maier@capitalone.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.4",
+    "angular-ui-router": "ui-router#~0.2.15"
+  }
+}
