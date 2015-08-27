@@ -18,13 +18,19 @@ module.exports = function(config) {
       //inject:bower
 
       "public/bower_components/angular/angular.js",
+
       "public/bower_components/angular-ui-router/release/angular-ui-router.js",
+
       "public/bower_components/jquery/dist/jquery.js",
+
+      "public/bower_components/angular-mocks/angular-mocks.js",
+
       "public/bower_components/bootstrap/dist/js/bootstrap.js",
 
       //inject:end
 
       'src/js/**/*.js',
+      'src/gen/templates.js',
       'test/**/*Test.js'
     ],
 

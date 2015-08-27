@@ -29,18 +29,22 @@ gulp.task('js', ['clean-js'], function () {
         .pipe(gulp.dest('public/js'));
 });
 
-gulp.task('inject-dependencies', ['templates', 'js'], function () {
+gulp.task('inject-dependencies', ['copy-templates', 'js'], function () {
     return gulp.src(indexHtml)
         .pipe(inject(gulp.src(mainBowerFiles(), {read: false}), {name: 'bower', ignorePath: 'public'}))
         .pipe(inject(gulp.src(['public/js/**/*.js', 'public/templates/**/*.js'], {read: false}), {ignorePath: 'public'}))
         .pipe(gulp.dest('public'));
 });
 
-gulp.task('clean-templates', function () {
+gulp.task('clean-gen-templates', function () {
+    return gulp.src('gen/templates', {read: false})
+        .pipe(clean());
+});
+gulp.task('clean-public-templates', function () {
     return gulp.src('public/templates', {read: false})
         .pipe(clean());
 });
-gulp.task('templates', ['clean-templates'], function () {
+gulp.task('generate-templates', ['clean-gen-templates'], function () {
     return gulp.src('src/js/**/*.html')
         .pipe(templateCache({
             standalone: true,
@@ -48,7 +52,11 @@ gulp.task('templates', ['clean-templates'], function () {
                 return url.match(/[^\/]*$/);
             }
         }))
-        .pipe(gulp.dest('public/templates'));
+        .pipe(gulp.dest('src/gen'));
+});
+gulp.task('copy-templates', ['generate-templates', 'clean-public-templates'], function () {
+    return gulp.src('src/gen/templates.js')
+        .pipe(gulp.dest('public/js'))
 });
 
 gulp.task('clean-css', function () {
@@ -61,7 +69,11 @@ gulp.task('less', function () {
         .pipe(gulp.dest('public'));
 });
 
-gulp.task('serve', ['index', 'templates', 'less'], function () {
+gulp.task('build', ['index', 'copy-templates', 'less'], function () {
+
+});
+
+gulp.task('serve', ['build'], function () {
     browserSync({
         server: {
             baseDir: 'public'
@@ -74,12 +86,11 @@ gulp.task('serve', ['index', 'templates', 'less'], function () {
     gulp.watch('src/less/**/*.less', ['less-watch']);
 });
 
-gulp.task('karma-bower-inject', function () {
-    //console.log('main: ', gulp.src('./karma.conf.js'));
-
+gulp.task('karma-bower-inject', ['generate-templates'], function () {
     gulp.src('karma.conf.js')
         .pipe(inject(gulp.src(mainBowerFiles({
-            filter: '**/*.js'
+            filter: '**/*.js',
+            includeDev: true
         }), {read: false}), {
             starttag: '//inject:bower',
             endtag: '//inject:end',
