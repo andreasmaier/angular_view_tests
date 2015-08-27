@@ -18,7 +18,7 @@ gulp.task('clean-index', function () {
 gulp.task('index', ['clean-index', 'inject-dependencies']);
 gulp.task('index-watch', ['index'], browserSync.reload);
 gulp.task('js-watch', ['js'], browserSync.reload);
-gulp.task('template-watch', ['templates'], browserSync.reload);
+gulp.task('template-watch', ['copy-templates'], browserSync.reload);
 gulp.task('less-watch', ['less'], browserSync.reload);
 
 gulp.task('clean-js', function () {
