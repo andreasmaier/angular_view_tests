@@ -1,14 +1,18 @@
 <div class="cars">
+    <div class="error-msg">{{errors}}</div>
+
     <table class="table">
         <tr>
             <th>Make</th>
             <th>Model</th>
             <th>Year</th>
         </tr>
-        <tr ng-repeat="car in cars">
+        <tr class="cars-list" ng-repeat="car in cars">
             <td>{{car.make}}</td>
             <td>{{car.model}}</td>
             <td>{{car.year}}</td>
         </tr>
     </table>
+
+    <div class="btn btn-primary foo" ng-click="fetchClicked();"><span>Fetch Cars</span></div>
 </div>

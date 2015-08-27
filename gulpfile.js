@@ -2,6 +2,7 @@ var gulp = require('gulp'),
     browserSync = require('browser-sync'),
     clean = require('gulp-clean'),
     inject = require('gulp-inject'),
+    karmaServer = require('karma').Server,
     less = require('gulp-less'),
     mainBowerFiles = require('main-bower-files'),
     templateCache = require('gulp-angular-templatecache');
@@ -90,7 +91,12 @@ gulp.task('karma-bower-inject', ['generate-templates'], function () {
     gulp.src('karma.conf.js')
         .pipe(inject(gulp.src(mainBowerFiles({
             filter: '**/*.js',
-            includeDev: true
+            includeDev: true,
+            overrides: {
+                "jquery": {
+                    ignore: true
+                }
+            }
         }), {read: false}), {
             starttag: '//inject:bower',
             endtag: '//inject:end',
@@ -99,4 +105,11 @@ gulp.task('karma-bower-inject', ['generate-templates'], function () {
             }
         }))
         .pipe(gulp.dest(''));
+});
+
+gulp.task('test', ['karma-bower-inject'], function (cb) {
+    return new karmaServer({
+        configFile: __dirname + '/karma.conf.js',
+        singleRun: true
+    }, cb).start();
 });
