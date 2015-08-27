@@ -4,12 +4,18 @@ describe('Cars Directive', function () {
 
     beforeEach(module('viewTest'));
 
-    beforeEach(inject(function ($injector) {
+    beforeEach(inject(function ($injector, scope) {
         $httpBackend = $injector.get('$httpBackend');
         var renderTemplate = $injector.get('renderTemplate');
 
-        carsView = renderTemplate('<cars></cars>');
+        scope.scopeMessage = "Hello Test.";
+
+        carsView = renderTemplate('<cars message="scopeMessage"></cars>', scope);
     }));
+
+    it('shows a custom message', function () {
+        expect(carsView.find('.parent-msg').text()).toBe('Hello Test.');
+    });
 
     it('shows all the cars', function () {
         expect(carsView.find('.cars-list').length).toBe(0);

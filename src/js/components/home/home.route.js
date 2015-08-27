@@ -2,7 +2,8 @@ angular.module('viewTest').config(function ($stateProvider) {
      $stateProvider.state(
          'home', {
              url: '/',
-             templateUrl: 'home.html'
+             templateUrl: 'home.html',
+             controller: 'HomeController'
          }
      );
 });

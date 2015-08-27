@@ -8,7 +8,9 @@ angular.module('viewTest').controller('CarsController', function ($scope, $http)
                 $scope.cars = response.data;
             })
             .error(function (msg) {
-                $scope.errors = msg.error;
+                if (msg) {
+                    $scope.errors = msg.error;
+                }
             });
     };
 });
