@@ -1,9 +1,13 @@
-angular.module('viewTest').controller('CarsController', function ($scope) {
-    $scope.cars = [
-        {
-            make: 'BMW',
-            model: '4 series',
-            year: '2014'
+angular.module('viewTest').controller('CarsController', function ($scope, $http) {
+    $scope.cars = [];
+    
+    $http.get('http://localhost:8081/cars').then(
+        function (response) {
+            console.log('response: ', response.data);
+            $scope.cars = response.data;
+        },
+        function (msg) {
+            console.error('There was an error:', msg);
         }
-    ]
+    )
 });

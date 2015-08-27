@@ -1,7 +1,14 @@
-<ul>
-    <li ng-repeat="car in cars">
-        <div>Make: {{car.make}}</div>
-        <div>Model: {{car.model}}</div>
-        <div>Year: {{car.year}}</div>
-    </li>
-</ul>
+<div class="cars">
+    <table class="table">
+        <tr>
+            <th>Make</th>
+            <th>Model</th>
+            <th>Year</th>
+        </tr>
+        <tr ng-repeat="car in cars">
+            <td>{{car.make}}</td>
+            <td>{{car.model}}</td>
+            <td>{{car.year}}</td>
+        </tr>
+    </table>
+</div>
