@@ -27,8 +27,9 @@ module.exports = function(config) {
       'src/js/**/*.js',
       'src/gen/templates.js',
 
-      'test/scope.js',
-      'test/renderTemplate.js',
+      'test/helpers/module.js',
+      'test/helpers/scope.js',
+      'test/helpers/renderTemplate.js',
 
       'test/**/*Test.js'
     ],

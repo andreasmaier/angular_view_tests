@@ -9,13 +9,13 @@
         Service Message: <span class="service-msg">{{serviceMessage}}</span>
     </div>
 
-    <table class="table">
+    <table class="table table-striped">
         <tr>
             <th>Make</th>
             <th>Model</th>
             <th>Year</th>
         </tr>
-        <tr class="cars-list" ng-repeat="car in cars">
+        <tr class="car-item" ng-repeat="car in cars" ng-click="selectCar(car);">
             <td>{{car.make}}</td>
             <td>{{car.model}}</td>
             <td>{{car.year}}</td>

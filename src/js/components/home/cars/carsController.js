@@ -1,4 +1,4 @@
-angular.module('viewTest').controller('CarsController', function ($scope, $http, carsService) {
+angular.module('viewTest').controller('CarsController', function ($scope, $http, carsService, $state) {
     $scope.cars = [];
     $scope.errors = '';
     $scope.serviceMessage = carsService.getMessage();
@@ -14,4 +14,8 @@ angular.module('viewTest').controller('CarsController', function ($scope, $http,
                 }
             });
     };
+
+    $scope.selectCar = function (car) {
+        $state.go('cars', { id: car.id });
+    }
 });
