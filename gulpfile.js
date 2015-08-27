@@ -57,7 +57,7 @@ gulp.task('generate-templates', ['clean-gen-templates'], function () {
 });
 gulp.task('copy-templates', ['generate-templates', 'clean-public-templates'], function () {
     return gulp.src('src/gen/templates.js')
-        .pipe(gulp.dest('public/js'))
+        .pipe(gulp.dest('public/templates'))
 });
 
 gulp.task('clean-css', function () {
