@@ -1,24 +1,14 @@
 describe('Cars Directive', function () {
-    var compile;
-    var rootScope;
-    var $scope;
     var $httpBackend;
     var carsView;
 
     beforeEach(module('viewTest'));
 
-    beforeEach(inject(function (_$compile_, _$rootScope_, $templateCache, $injector) {
-        compile = _$compile_;
-        rootScope = _$rootScope_;
-        $scope = rootScope.$new();
-
+    beforeEach(inject(function ($injector) {
         $httpBackend = $injector.get('$httpBackend');
+        var renderTemplate = $injector.get('renderTemplate');
 
-        //var tmp = $templateCache.get('cars.html');
-        carsView = angular.element('<cars></cars>');
-
-        compile(carsView)($scope);
-        $scope.$digest();
+        carsView = renderTemplate('<cars></cars>');
     }));
 
     it('shows all the cars', function () {
