@@ -3,7 +3,8 @@ var express = require('express');
 var app = express();
 
 app.get('/cars', function (req, res) {
-        res.send([
+    res.send({
+        data: [
             {
                 make: 'BMW',
                 model: '4 series',
@@ -44,7 +45,8 @@ app.get('/cars', function (req, res) {
                 model: 'Fusion',
                 year: 2011
             }
-        ]);
+        ]
+    });
 });
 
 var server = app.listen(8081, function () {
