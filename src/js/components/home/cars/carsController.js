@@ -1,5 +1,6 @@
-angular.module('viewTest').controller('CarsController', function ($scope, $http, carsService, $state) {
+angular.module('viewTest').controller('CarsController', function ($scope, $http, carsService, $state, $resource) {
     $scope.cars = [];
+    $scope.drivers = [];
     $scope.errors = '';
     $scope.serviceMessage = carsService.getMessage();
 
@@ -13,6 +14,16 @@ angular.module('viewTest').controller('CarsController', function ($scope, $http,
                     $scope.errors = msg.error;
                 }
             });
+    };
+
+    $scope.fetchDriversClicked = function () {
+        var driverResource = $resource('http://localhost:8081/drivers', {}, {
+            get: {method: 'GET'}
+        });
+
+        driverResource.get().$promise.then(function (data) {
+            $scope.drivers = data.data;
+        });
     };
 
     $scope.selectCar = function (car) {

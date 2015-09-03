@@ -9,18 +9,35 @@
         Service Message: <span class="service-msg">{{serviceMessage}}</span>
     </div>
 
-    <table class="table table-striped">
-        <tr>
-            <th>Make</th>
-            <th>Model</th>
-            <th>Year</th>
-        </tr>
-        <tr class="car-item" ng-repeat="car in cars" ng-click="selectCar(car);">
-            <td>{{car.make}}</td>
-            <td>{{car.model}}</td>
-            <td>{{car.year}}</td>
-        </tr>
-    </table>
+    <div class="row">
+        <div class="col-xs-6">
+            <table class="table table-striped">
+                <tr>
+                    <th>Make</th>
+                    <th>Model</th>
+                    <th>Year</th>
+                </tr>
+                <tr class="car-item" ng-repeat="car in cars" ng-click="selectCar(car);">
+                    <td>{{car.make}}</td>
+                    <td>{{car.model}}</td>
+                    <td>{{car.year}}</td>
+                </tr>
+            </table>
+        </div>
 
-    <div class="btn btn-primary foo" ng-click="fetchClicked();"><span>Fetch Cars</span></div>
+        <div class="col-xs-6">
+            <table class="table table-striped">
+                <tr>
+                    <th>Name</th>
+                </tr>
+                <tr class="driver-item" ng-repeat="driver in drivers">
+                    <td>{{driver.name}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="btn btn-primary cars-button" ng-click="fetchClicked();"><span>Fetch Cars</span></div>
+
+    <div class="btn btn-primary drivers-button" ng-click="fetchDriversClicked();"><span>Fetch Drivers</span></div>
 </div>

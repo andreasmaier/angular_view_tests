@@ -1,4 +1,5 @@
 angular.module('viewTest', [
     'ui.router',
-    'templates'
+    'templates',
+    'ngResource'
 ]);

@@ -36,6 +36,30 @@ describe('Cars Directive', function () {
         expect(carsView.find('.car-item').length).toBe(3);
     });
 
+    describe('when a user clicks the fetch drivers button', function () {
+        it('makes a request and displays the drivers', function () {
+            expect(carsView.find('.driver-item').length).toBe(0);
+
+            this.$httpBackend.when('GET', 'http://localhost:8081/drivers').respond({
+                data: [
+                    {
+                        name: 'Pete'
+                    },
+                    {
+                        name: 'Steph'
+                    }
+                ]
+            });
+
+            carsView.find('.drivers-button').click();
+
+            this.$httpBackend.flush();
+
+            expect(carsView.find('.driver-item:eq(0)').text()).toContain('Pete');
+            expect(carsView.find('.driver-item:eq(1)').text()).toContain('Steph');
+        });
+    });
+
     describe('when there is an error response', function () {
         it('displays an error message', function () {
             expect(carsView.find('.error-msg').text()).toBe('');
@@ -44,7 +68,7 @@ describe('Cars Directive', function () {
                 error: 'message'
             });
 
-            carsView.find('.btn').click();
+            carsView.find('.cars-button').click();
 
             this.$httpBackend.flush();
             expect(carsView.find('.error-msg').text()).toBe('message');
@@ -87,7 +111,7 @@ describe('Cars Directive', function () {
             ]
         });
 
-        view.find('.btn').click();
+        view.find('.cars-button').click();
 
         self.$httpBackend.flush();
     }

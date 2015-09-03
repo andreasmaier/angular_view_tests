@@ -10,7 +10,7 @@ describe('Home Page', function () {
         homeView = this.renderTemplate('home.html', this.scope);
     }));
 
-    fit('shows a custom message', function () {
+    it('shows a custom message', function () {
         expect(homeView.find('.car-heading').text()).toEqual('Hello to the car list');
     });
 });

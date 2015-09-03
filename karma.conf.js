@@ -19,6 +19,7 @@ module.exports = function(config) {
 
       //inject:bower
       "public/bower_components/angular/angular.js",
+      "public/bower_components/angular-resource/angular-resource.js",
       "public/bower_components/angular-ui-router/release/angular-ui-router.js",
       "public/bower_components/angular-mocks/angular-mocks.js",
       "public/bower_components/bootstrap/dist/js/bootstrap.js",

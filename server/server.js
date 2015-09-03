@@ -1,11 +1,18 @@
 var express = require('express'),
-    cars = require('./cars.json');
+    cars = require('./cars.json'),
+    drivers = require('./drivers.json');
 
 var app = express();
 
 app.get('/cars', function (req, res) {
     res.send({
         data: cars
+    });
+});
+
+app.get('/drivers', function (req, res) {
+    res.send({
+        data: drivers
     });
 });
 
