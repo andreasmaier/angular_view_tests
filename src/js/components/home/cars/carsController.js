@@ -16,12 +16,16 @@ angular.module('viewTest').controller('CarsController', function ($scope, $http,
             });
     };
 
-    $scope.fetchDriversClicked = function () {
+    function getDrivers() {
         var driverResource = $resource('http://localhost:8081/drivers', {}, {
             get: {method: 'GET'}
         });
 
-        driverResource.get().$promise.then(function (data) {
+        return driverResource.get();
+    }
+
+    $scope.fetchDriversClicked = function () {
+        getDrivers().$promise.then(function (data) {
             $scope.drivers = data.data;
         });
     };
